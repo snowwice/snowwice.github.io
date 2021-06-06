@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>hexo使用汇总</title>
+    <url>/2021/05/19/hexo%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<span id="more"></span>
+<h5 id="Hexo部署"><a href="#Hexo部署" class="headerlink" title="Hexo部署"></a>Hexo部署</h5><h6 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h6 id="初始化hexo（博客所在的文件夹最好新建空的，否则初始化会报错）"><a href="#初始化hexo（博客所在的文件夹最好新建空的，否则初始化会报错）" class="headerlink" title="初始化hexo（博客所在的文件夹最好新建空的，否则初始化会报错）"></a>初始化hexo（博客所在的文件夹最好新建空的，否则初始化会报错）</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init 博客所在文件夹</span><br></pre></td></tr></table></figure>
+<h6 id="安装hexo-deployer-git插件（否则hexo-push到git会报ERROR-Deployer-not-found-github）"><a href="#安装hexo-deployer-git插件（否则hexo-push到git会报ERROR-Deployer-not-found-github）" class="headerlink" title="安装hexo-deployer-git插件（否则hexo push到git会报ERROR Deployer not found: github）"></a>安装hexo-deployer-git插件（否则hexo push到git会报<code>ERROR Deployer not found: github</code>）</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h6 id="主题获取"><a href="#主题获取" class="headerlink" title="主题获取"></a>主题获取</h6><p>经过<a href="https://github.com/litten/hexo-theme-yilia">yilia</a>、 <a href="https://github.com/ppoffice/hexo-theme-icarus">icarus</a> 主题配置，目前最满意的是<a href="https://github.com/Shen-Yu/hexo-theme-ayer">ayer</a>  </p>
+<ol>
+<li>一般获取方式：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Shen-Yu/hexo-theme-ayer.git themes/ayer</span><br></pre></td></tr></table></figure></li>
+<li>hexo &gt;= 5.0：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-theme-ayer -S</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h5><p>一般配置按<code>_config.yml</code>的注释或hexo主题文档的说明修改，以下为一些特殊的配置：</p>
+<h6 id="文章添加图片"><a href="#文章添加图片" class="headerlink" title="文章添加图片"></a>文章添加图片</h6><ol>
+<li>将图片统一放<code>source/images</code>文件夹中，在文章以<code>![](/images/image.jpg)</code>添加。</li>
+<li>设置<code>_config.yml</code>中的<code>post_asset_folder: true</code>后，每次<code>hexo new &quot;文章名称&quot;</code>新建文章时都会自动创建与文章名称同名的文件夹，将图片存放此文件夹，通过相对路径引用图片。这种方式管理图片更加有组织。   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;% asset_img image.jpg 图片说明 %&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h6 id="设置-config-yml中的date-format-YYYY-MM-DD-ddd，文章时间展示格式为年-月-日-星期。"><a href="#设置-config-yml中的date-format-YYYY-MM-DD-ddd，文章时间展示格式为年-月-日-星期。" class="headerlink" title="设置_config.yml中的date_format: YYYY-MM-DD ddd，文章时间展示格式为年-月-日 星期。"></a>设置<code>_config.yml</code>中的<code>date_format: YYYY-MM-DD ddd</code>，文章时间展示格式为<code>年-月-日 星期</code>。</h6><h6 id="config-yml中设置github关联（关于github的博客建站，详见TODO）："><a href="#config-yml中设置github关联（关于github的博客建站，详见TODO）：" class="headerlink" title="_config.yml中设置github关联（关于github的博客建站，详见TODO）："></a><code>_config.yml</code>中设置github关联（关于github的博客建站，详见TODO）：</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: <span class="string">&#x27;https://github.com/snowwice/snowwice.github.io.git&#x27;</span></span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<h5 id="Hexo基本操作"><a href="#Hexo基本操作" class="headerlink" title="Hexo基本操作"></a>Hexo基本操作</h5><h6 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;文章名称&quot;</span></span><br></pre></td></tr></table></figure>
+<h6 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h6 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<h6 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<h6 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac终端命令</title>
+    <url>/2020/04/27/mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>一些我用过的mac终端命令。</p>
+<span id="more"></span>
+<h5 id="设置网络networksetup"><a href="#设置网络networksetup" class="headerlink" title="设置网络networksetup"></a>设置网络networksetup</h5><p>为了配置公司内网get到的技能，然而终端的networksetup手册不全（火冒三藏.jpg），又没有找到官方手册，各种搜索用到了以下命令：</p>
+<h6 id="自动代理配置打开／关闭"><a href="#自动代理配置打开／关闭" class="headerlink" title="自动代理配置打开／关闭"></a>自动代理配置打开／关闭</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">networksetup -setautoproxystate &lt;networkservice&gt; &lt;on|off&gt;</span><br><span class="line"><span class="comment"># 🌰：networksetup -setautoproxystate Ethernet off</span></span><br></pre></td></tr></table></figure>
+<p>来源自：<a href="https://blog.qsboy.com/set-proxy/">用Terminal快速设置代理</a></p>
+<h6 id="设置网页代理（http）"><a href="#设置网页代理（http）" class="headerlink" title="设置网页代理（http）"></a>设置网页代理（http）</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">networksetup -setwebproxy &lt;networkservice&gt; &lt;domain&gt; &lt;port number&gt; &lt;authenticated&gt; &lt;username&gt; &lt;password&gt;</span><br><span class="line"><span class="comment"># 🌰：networksetup -setwebproxy Ethernet 127.0.0.1 8080 on test 1111</span></span><br></pre></td></tr></table></figure>
+<p>来源自：<a href="https://gowa.club/macOS/macOS%E7%9A%84networksetup%E5%91%BD%E4%BB%A4%E6%9D%A5%E7%AE%A1%E7%90%86%E7%BD%91%E7%BB%9C.html">macOS的networksetup命令来管理网络
+</a></p>
+<h6 id="设置网页代理（https）"><a href="#设置网页代理（https）" class="headerlink" title="设置网页代理（https）"></a>设置网页代理（https）</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">networksetup -setsecurewebproxy &lt;networkservice&gt; &lt;domain&gt; &lt;port number&gt; &lt;authenticated&gt; &lt;username&gt; &lt;password&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h5><h6 id="显示被隐藏的文件夹（快捷键command-shift-）"><a href="#显示被隐藏的文件夹（快捷键command-shift-）" class="headerlink" title="显示被隐藏的文件夹（快捷键command+shift+.）"></a>显示被隐藏的文件夹（快捷键command+shift+.）</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -ah</span><br></pre></td></tr></table></figure>
+<h6 id="查找相关文件"><a href="#查找相关文件" class="headerlink" title="查找相关文件"></a>查找相关文件</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo find / -name 关键字</span><br></pre></td></tr></table></figure>
+<h6 id="打开文件夹"><a href="#打开文件夹" class="headerlink" title="打开文件夹"></a>打开文件夹</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">open 关键字</span><br></pre></td></tr></table></figure>
+<h6 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch 关键字</span><br></pre></td></tr></table></figure>
+<h6 id="重启launchpad"><a href="#重启launchpad" class="headerlink" title="重启launchpad"></a>重启launchpad</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.dock ResetLaunchPad -bool <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h6 id="重启dock"><a href="#重启dock" class="headerlink" title="重启dock"></a>重启dock</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">killall Dock</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>其他技术</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue使用汇总</title>
+    <url>/2020/04/17/vue%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>做项目收集了很多，但汇总和命名太难了1551。</p>
+<span id="more"></span>
+<h2 id="Vue插值文本换行"><a href="#Vue插值文本换行" class="headerlink" title="Vue插值文本换行"></a>Vue插值文本换行</h2><ul>
+<li>插值：往HTML网页写入内容。比如纯文本或html标记语言之类。</li>
+</ul>
+<ol>
+<li><code>v-html</code>  </li>
+<li>将插值所在div的css加 <code>white-space: pre-wrap;</code>，数据里须有<code>\n</code>（推荐）</li>
+</ol>
+<h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><ul>
+<li>计算属性传参<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">&quot;test(&#x27;red&#x27;)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">test</span>(<span class="params">t</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">t</span>)=&gt;</span><span class="string">`background:<span class="subst">$&#123;t&#125;</span>`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="视图更新解决方法"><a href="#视图更新解决方法" class="headerlink" title="视图更新解决方法"></a>视图更新解决方法</h2><p>  视图更新问题遇到了太多太多次，主要用以下的解决方法：</p>
+<ol>
+<li><code>this.$forceUpdate()</code><br>使用场景：数据层级太多造成的更新不及时，一般还可以用<code>this.$set(目标对象,索引,值)</code>或js的操作对象和数组的方法代替，但貌似这个更好用。  </li>
+<li><code>this.$nextTick(() =&gt; &#123;&#125;)</code><br>使用场景：dom生成之后的视图更新  </li>
+<li><code>v-if</code>展示标识<br>使用场景：一些诡异的视图不更新，一般这个解决不了就看看自己有没有犯一些弱智的错误吧。  </li>
+<li>key（组件更新）<br>使用场景：v-if加载的组件不更新，可能是相似组件不会更新元素。一般很少使用，检查+1。  </li>
+</ol>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《JavaScript高级程序设计》笔记之第22章高级技巧</title>
+    <url>/2018/10/11/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%AC%AC22%E7%AB%A0%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>记录此章节类型检测、惰性载入函数以及函数节流。</p>
+<span id="more"></span>
+<h2 id="22-1-1-安全的类型检测"><a href="#22-1-1-安全的类型检测" class="headerlink" title="22.1.1 安全的类型检测"></a>22.1.1 安全的类型检测</h2><p>   JavaScript内置的类型检测机制并非完全可靠。事实上，发生错误否定及错误肯定的情况也不在少数。比如说typeof操作符吧，由于它有一些无法预知的行为，经常会导致检测数据类型时得到不靠谱的结果。Safari(直至第4版)在对正则表达式应用typeof操作符时会返回”function”，因此很难确定某个值到底是不是函数。  </p>
+<p>   再比如，instanceof操作符在存在多个全局作用域(像一个页面包含多个frame)的情况下，也是问题多多。一个经典的例子(第5章也提到过)就是像下面这样将对象标识为数组。<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> isArray = value <span class="keyword">instanceof</span> <span class="built_in">Array</span>;</span><br></pre></td></tr></table></figure><br>   以上代码要返回true，value必须是一个数组，而且还必须与 Array 构造函数在同个全局作用域中。(别忘了，Array是window的属性。)如果value是在另个frame 中定义的数组，那么以上代码就会返回false。  </p>
+<p>   在检测某个对象到底是原生对象还是开发人员自定义的对象的时候，也会有问题。出现这个问题的原因是浏览器开始原生支持JSON对象了。因为很多人一直在使用Douglas Crockford的JSON库，而该库定义了一个全局JSON对象。于是开发人员很难确定页面中的JSON对象到底是不是原生的。  </p>
+<p>   解决上述问题的办法都一样。大家知道，在任何值上调用Object原生的toString()方法，都会返回一个[object NativeConstructorName]格式的字符串。每个类在内部都有一个[[Class]]属性，这个属性中就指定了上述字符串中的构造函数名。举个例子吧。<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert(<span class="built_in">Object</span>.prototype.toString.call(value)); <span class="comment">//&quot;[object Array]&quot;</span></span><br></pre></td></tr></table></figure><br>   由于原生数组的构造函数名与全局作用域无关，因此使用 toString()就能保证返回一致的值。利用这一点，可以创建如下函数:<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">&quot;[object Array]&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   同样，也可以基于这一思路来测试某个值是不是原生函数或正则表达式:<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFunction</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">&quot;[object Function]&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isRegExp</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">&quot;[object RegExp]&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   不过要注意，对于在IE中以COM对象形式实现的任何函数，isFunction()都将返回 false(因为它们并非原生的JavaScript函数，请参考第10章中更详细的介绍)。  </p>
+<p>   这一技巧也广泛应用于检测原生JSON对象。Object的toString()方法不能检测非原生构造函数的构造函数名。因此，开发人员定义的任何构造函数都将返回[object Object]。有些JavaScript库会包含与下面类似的代码。<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> isNativeJSON = <span class="built_in">window</span>.JSON &amp;&amp; <span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">JSON</span>) == <span class="string">&quot;[object JSON]&quot;</span>;</span><br></pre></td></tr></table></figure><br>   在Web开发中能够区分原生与非原生JavaScript对象非常重要。只有这样才能确切知道某个对象到底有哪些功能。这个技巧可以对任何对象给出正确的结论。</p>
+<h2 id="22-1-3-惰性载入函数"><a href="#22-1-3-惰性载入函数" class="headerlink" title="22.1.3 惰性载入函数"></a>22.1.3 惰性载入函数</h2><p>定义：即使只有一个if语句的代码，也肯定要比没有if语句的慢，所以如果if语句不必每次执行，那么代码可以运行地更快一些。解决方案就是称之为惰性载入的技巧。<br>惰性载入表示函数执行的分支仅会发生一次。有两种实现惰性载入的方式，第一种就是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一个按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行的分支了。例如:<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(...)&#123;</span><br><span class="line">        test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(...)&#123;</span><br><span class="line">        test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第二种实现惰性载入的方式是在声明函数时就指定适当的函数。这样，第一次调用函数时就不会损失性能了，而在代码首次加载时会损失一点性能。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(...)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(...)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="22-3-3-函数节流"><a href="#22-3-3-函数节流" class="headerlink" title="22.3.3 函数节流"></a>22.3.3 函数节流</h2><p>定义：某些代码不可以在没有间断的情况连续重复执行。第一次调用函数，创建一个定时器，在指定的时间间隔之后运行代码。当第二次调用该函数时，它会清除前一次的定时器 并设置另一个。如果前一个定时器已经执行过了，这个操作就没有任何意义。然而，如果前一个定时器尚未执行，其实就是将其替换为一个新的定时器。目的是只有在执行函数的请求停止了一段时间之后才执行。<br>下面是一个通用的节流函数：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param </span>method 事件触发的操作</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param </span>mustRunDelay 间隔多少毫秒需要触发一次事件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">method, mustRunDelay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer,</span><br><span class="line">        args = <span class="built_in">arguments</span>,</span><br><span class="line">        start;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> self = <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">let</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">        <span class="keyword">if</span>(!start)&#123;</span><br><span class="line">            start = now;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(timer)&#123;</span><br><span class="line">            <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(now - start &gt;= mustRunDelay)&#123;</span><br><span class="line">            method.apply(self, args);</span><br><span class="line">            start = now;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            timer = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                loop.apply(self, args);</span><br><span class="line">            &#125;, <span class="number">50</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>集文</category>
+        <category>编程相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《JavaScript高级程序设计》笔记之第24章最佳实践</title>
+    <url>/2018/10/15/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%AC%AC24%E7%AB%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<p>记录此章节编程实践、性能、最小化语句数及优化DOM交互。</p>
+<span id="more"></span>
+<h2 id="24-1-4-编程实践"><a href="#24-1-4-编程实践" class="headerlink" title="24.1.4 编程实践"></a>24.1.4 编程实践</h2><h3 id="1、尊重对象的所有权"><a href="#1、尊重对象的所有权" class="headerlink" title="1、尊重对象的所有权"></a>1、尊重对象的所有权</h3><ul>
+<li>不要为实例或原型添加属性;</li>
+<li>不要为实例或原型添加方法;</li>
+<li>不要重定义已存在的方法。<br>最佳的方法便是永远不修改不是由你所有的对象。所谓拥有对象，就是说这个对象是你创建的可以通过以下方式为对象创建新的功能:  </li>
+<li>创建包含所需功能的新对象，并用它与相关对象进行交互;</li>
+<li>创建自定义类型，继承需要进行修改的类型。然后可以为自定义类型添加额外功能。</li>
+</ul>
+<h3 id="2、避免全局变量"><a href="#2、避免全局变量" class="headerlink" title="2、避免全局变量"></a>2、避免全局变量</h3><p>与尊重对象所有权密切相关的是尽可能避免全局变量和函数。这也关系到创建一个脚本执行的一致的和可维护的环境。最多创建一个全局变量，让其他对象和函数存在其中。请看以下例子:<br>    <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//两个全局量——避免!! </span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;Nicholas&quot;</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>  这段代码包含了两个全局量:变量 name 和函数 sayName()。其实可以创建一个包含两者的对象，如下例所示:<br>    <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//一个全局量——推荐</span></span><br><span class="line"><span class="keyword">var</span> MyApplication = &#123;</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&quot;Nicholas&quot;</span>,</span><br><span class="line">   <span class="attr">sayName</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       alert(<span class="built_in">this</span>.name);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br> 这段重写的代码引入了一个单一的全局对象MyApplicationname和sayName()都附加到其上。 这样做消除了一些存在于前一段代码中的一些问题。首先，变量name覆盖了window.name属性，可能会与其他功能产生冲突;其次，它有助消除功能作用域之间的混淆。调用MyApplication.sayName()在逻辑上暗示了代码的任何问题都可以通过检查定义MyApplication的代码来确定。<br>单一的全局量的延伸便是命名空间的概念，由YUI(Yahoo! User Interface)库普及。命名空间包括创建一个用于放置功能的对象。  </p>
+<h3 id="3、避免与null比较"><a href="#3、避免与null比较" class="headerlink" title="3、避免与null比较"></a>3、避免与null比较</h3><p>与null比较的代码，尝试使用以下技术替换:</p>
+<ul>
+<li>如果值应为一个引用类型，使用instanceof操作符检查其构造函数;</li>
+<li>如果值应为一个基本类型，使用typeof检查其类型;</li>
+<li>如果是希望对象包含某个特定的方法名，则使用typeof操作符确保指定名字的方法存在于对象上。  </li>
+</ul>
+<h3 id="4、使用常量"><a href="#4、使用常量" class="headerlink" title="4、使用常量"></a>4、使用常量</h3><ul>
+<li>重复值——任何在多处用到的值都应抽取为一个常量。这就限制了当一个值变了而另一个没变的时候会造成的错误。这也包含了CSS类名。</li>
+<li>用户界面字符串——任何用于显示给用户的字符串，都应被抽取出来以方便国际化。</li>
+<li>URLs——在Web应用中，资源位置很容易变更，所以推荐用一个公共地方存放所有的URL。</li>
+<li>任意可能会更改的值——每当你在用到字面量值的时候，你都要问一下自己这个值在未来是不是会变化。如果答案是“是”，那么这个值就应该被提取出来作为一个常量。  </li>
+</ul>
+<h1 id="24-2-性能"><a href="#24-2-性能" class="headerlink" title="24.2 性能"></a>24.2 性能</h1><h2 id="24-2-1-注意作用域"><a href="#24-2-1-注意作用域" class="headerlink" title="24.2.1 注意作用域"></a>24.2.1 注意作用域</h2><h3 id="1、避免全局查找"><a href="#1、避免全局查找" class="headerlink" title="1、避免全局查找"></a>1、避免全局查找</h3><p>诸如document之类的全局对象最好限制使用，将用到多次的全局对象存储为局部变量总是没错的。</p>
+<h3 id="2、避免with语句"><a href="#2、避免with语句" class="headerlink" title="2、避免with语句"></a>2、避免with语句</h3><p>在性能非常重要的地方必须避免使用with语句。和函数类似，with语句会创建自己的作用域，因此会增加其中执行的代码的作用域链的长度。由于额外的作用域链查找，在with语句中执行的代码肯定会比外面执行的代码要慢。</p>
+<h2 id="24-2-2-选择正确方法"><a href="#24-2-2-选择正确方法" class="headerlink" title="24.2.2 选择正确方法"></a>24.2.2 选择正确方法</h2><h3 id="1、避免不必要的属性查找"><a href="#1、避免不必要的属性查找" class="headerlink" title="1、避免不必要的属性查找"></a>1、避免不必要的属性查找</h3><p>在计算机科学中，算法的复杂度是使用O符号来表示的。最简单、最快捷的算法是常数值即O(1)。之后，算法变得越来越复杂并花更长时间执行。下面的表格列出了JavaScript中常见的算法类型。  </p>
+<img src="/2018/10/15/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%AC%AC24%E7%AB%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%B1%BB%E5%9E%8B.png" class="" title>
+<p>常数值，即O(1)，指代字面值和存储在变量中的值。符号O(1)表示无论有多少个值，需要获取常量值的时间都一样。获取常量值是非常高效的过程。请看下面代码:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">10</span> + value;</span><br><span class="line">alert(sum);</span><br></pre></td></tr></table></figure>
+<p>该代码进行了四次常量值查找:数字5，变量value，数字10和变量sum。这段代码的整体复杂度被认为是O(1)。<br>在JavaScript中访问数组元素也是一个O(1)操作，和简单的变量查找效率一样。所以以下代码和前面的例子效率一样:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">5</span>, <span class="number">10</span>];</span><br><span class="line"><span class="keyword">var</span> sum = values[<span class="number">0</span>] + values[<span class="number">1</span>];</span><br><span class="line">alert(sum);</span><br></pre></td></tr></table></figure>
+<p>使用变量和数组要比访问对象上的属性更有效率，后者是一个O(n)操作。对象上的任何属性查找都要比访问变量或者数组花费更长时间，因为必须在原型链中对拥有该名称的属性进行一次搜索。简而言之，属性查找越多，执行时间就越长。请看以下内容:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; <span class="attr">first</span>: <span class="number">5</span>, <span class="attr">second</span>: <span class="number">10</span>&#125;;</span><br><span class="line">    <span class="keyword">var</span> sum = values.first + values.second;</span><br><span class="line">    alert(sum);</span><br></pre></td></tr></table></figure>
+<p>这段代码使用两次属性查找来计算sum的值。进行一两次属性查找并不会导致显著的性能问题，但是进行成百上千次则肯定会减慢执行速度。<br>  注意获取单个值的多重属性查找。例如，请看以下代码:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> query = <span class="built_in">window</span>.location.href.substring(<span class="built_in">window</span>.location.href.indexOf(<span class="string">&quot;?&quot;</span>));</span><br></pre></td></tr></table></figure>
+<p>在这段代码中，有6次属性查找:window.location.href.substring()有3次，window.location.href.indexOf()又有3次。只要数一数代码中的点的数量，就可以确定属性查找的次数了。这段代码由于两次用到了window.location.href，同样的查找进行了两次，因此效率特别不好。<br>一旦多次用到对象属性，应该将其存储在局部变量中。第一次访问该值会是O(n)，然而后续的访问都会是O(1)，就会节省很多。例如，之前的代码可以如下重写:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.href;</span><br><span class="line"><span class="keyword">var</span> query = url.substring(url.indexOf(<span class="string">&quot;?&quot;</span>));</span><br></pre></td></tr></table></figure>
+<p>这个版本的代码只有4次属性查找，相对于原始版本节省了33%。在更大的脚本中进行这种优化，倾向于获得更多改进。<br>一般来讲，只要能减少算法的复杂度，就要尽可能减少。尽可能多地使用局部变量将属性查找替换为值查找。进一步讲，如果即可以用数字化的数组位置进行访问，也可以使用命名属性(诸如NodeList对象)，那么使用数字位置。</p>
+<h2 id="2、优化循环"><a href="#2、优化循环" class="headerlink" title="2、优化循环"></a>2、优化循环</h2><p>循环是编程中最常见的结构，在JavaScript程序中同样随处可见。优化循环是性能优化过程中很重要的一个部分，由于它们会反复运行同一段代码，从而自动地增加执行时间。在其他语言中对于循环优 化有大量研究，这些技术也可以应用于JavaScript。一个循环的基本优化步骤如下所示。</p>
+<ol>
+<li>减值迭代——大多数循环使用一个从0开始、增加到某个特定值的迭代器。在很多情况下，从最大值开始，在循环中不断减值的迭代器更加高效。</li>
+<li>简化终止条件——由于每次循环过程都会计算终止条件，所以必须保证它尽可能快。也就是说避免属性查找或其他O(n)的操作。</li>
+<li>简化循环体——循环体是执行最多的，所以要确保其被最大限度地优化。确保没有某些可以被很容易移出循环的密集计算。</li>
+<li>使用后测试循环——最常用for循环和while循环都是前测试循环。而如do-while这种后测试循环，可以避免最初终止条件的计算，因此运行更快。</li>
+</ol>
+<h2 id="3、展开循环"><a href="#3、展开循环" class="headerlink" title="3、展开循环"></a>3、展开循环</h2><p>当循环的次数是确定的，消除循环并使用多次函数调用往往更快。<br>针对大数据集使用展开循环可以节省很多时间，但对于小数据集，额外的开销则可能得不偿失。它是要花更多的代码来完成同样的任务，如果处理的不是大数据集，一般来说并不值得。</p>
+<h2 id="4-避免双重解释"><a href="#4-避免双重解释" class="headerlink" title="4. 避免双重解释"></a>4. 避免双重解释</h2><p>解析包含JavaScript代码的字符串是不能在初始的解析过程中完成的，因为代码是包含在字符串中的，也就是说在JavaScript代码运行的同时必须新启动一个解析器来解析新的代码。实例化一个新的解析器有不容忽视的开销，所以这种代码要比直接解析慢得多。</p>
+<h2 id="5-性能的其他注意事项"><a href="#5-性能的其他注意事项" class="headerlink" title="5. 性能的其他注意事项"></a>5. 性能的其他注意事项</h2><p>当评估脚本性能的时候，还有其他一些可以考虑的东西。下面并非主要的问题，不过如果使用得当也会有相当大的提升。</p>
+<ul>
+<li>原生方法较快——只要有可能，使用原生方法而不是自己用JavaScript重写一个。原生方法是用诸如C/C++之类的编译型语言写出来的，所以要比JavaScript的快很多很多。JavaScript中最容易被忘记的就是可以在Math对象中找到的复杂的数学运算;这些方法要比任何用JavaScript写的同样方法如正弦、余弦快的多。</li>
+<li>Switch语句较快——如果有一系列复杂的if-else语句，可以转换成单个switch语句则可以得到更快的代码。还可以通过将 case 语句按照最可能的到最不可能的顺序进行组织，来进一步优化switch语句。</li>
+<li>位运算符较快——当进行数学运算的时候，位运算操作要比任何布尔运算或者算数运算快。选择性地用位运算替换算数运算可以极大提升复杂计算的性能。诸如取模，逻辑与和逻辑或都可以考虑用位运算来替换。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>集文</category>
+        <category>编程相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《JavaScript高级程序设计》笔记之第5章引用类型</title>
+    <url>/2018/09/25/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%AC%AC5%E7%AB%A0%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<p>最近总觉得自己的代码不够凝练、优雅，想要深一步学习javascript，便找来《JavaScript高级程序设计》。所得之处，行文记录。</p>
+<span id="more"></span>
+<h3 id="5-2-8-迭代方法"><a href="#5-2-8-迭代方法" class="headerlink" title="5.2.8 迭代方法"></a>5.2.8 迭代方法</h3><h4 id="every"><a href="#every" class="headerlink" title="every"></a>every</h4><p>定义:对数组中的每一项运行给定函数，如果该函数对每一项都返回 true，则返回 true。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> everyResult = numbers.every(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> (item &gt; <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line">alert(everyResult); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h4 id="some"><a href="#some" class="headerlink" title="some"></a>some</h4><p>定义:对数组中的每一项运行给定函数，如果该函数对任一项返回 true，则返回 true。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> someResult = numbers.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> (item &gt; <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line">alert(someResult); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-6-2-Number类型"><a href="#5-6-2-Number类型" class="headerlink" title="5.6.2 Number类型"></a>5.6.2 Number类型</h3><h4 id="toFixed"><a href="#toFixed" class="headerlink" title="toFixed()"></a>toFixed()</h4><p>定义:可把 Number 四舍五入为指定小数位数的数字。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">10.005</span>;</span><br><span class="line">alert(num.toFixed(<span class="number">2</span>));     <span class="comment">//&quot;10.01&quot;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>集文</category>
+        <category>编程相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《JavaScript高级程序设计》笔记之第6章面向对象程序设计</title>
+    <url>/2018/10/11/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%AC%AC6%E7%AB%A0%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<p>本章节主要介绍创建对象的模式与通过原型链实现继承，因为目前基本用不到所以看的一头雾水，还需归纳总结：</p>
+<span id="more"></span>
+<ol>
+<li>创建对象的模式：工厂模式、构造函数模式、原型模式、组合使用构造函数模式和原型模式、动态原型模式、寄生构造函数模式、稳妥构造函数模式。</li>
+<li>继承：原型链、借用构造函数、组合继承、原型式继承、寄生式继承、寄生组合式继承。  </li>
+</ol>
+<h2 id="6-2-4-组合使用构造函数模式和原型模式"><a href="#6-2-4-组合使用构造函数模式和原型模式" class="headerlink" title="6.2.4 组合使用构造函数模式和原型模式"></a>6.2.4 组合使用构造函数模式和原型模式</h2><p>创建自定义类型的最常见方式，就是组合使用构造函数模式与原型模式。构造函数模式用于定义实 例属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本， 但同时又共享着对方法的引用，最大限度地节省了内存。另外，这种混成模式还支持向构造函数传递参 数;可谓是集两种模式之长。下面的代码重写了前面的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line"><span class="built_in">this</span>.name = name; <span class="number">3</span> <span class="built_in">this</span>.age = age;</span><br><span class="line"><span class="built_in">this</span>.job = job;</span><br><span class="line"><span class="built_in">this</span>.friends = [<span class="string">&quot;Shelby&quot;</span>, <span class="string">&quot;Court&quot;</span>];</span><br><span class="line"> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="attr">constructor</span> : Person,</span><br><span class="line">    <span class="attr">sayName</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="built_in">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">&quot;Nicholas&quot;</span>, <span class="number">29</span>, <span class="string">&quot;Software Engineer&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">&quot;Greg&quot;</span>, <span class="number">27</span>, <span class="string">&quot;Doctor&quot;</span>);</span><br><span class="line">person1.friends.push(<span class="string">&quot;Van&quot;</span>);</span><br><span class="line">alert(person1.friends);    <span class="comment">//&quot;Shelby,Count,Van&quot;</span></span><br><span class="line">alert(person2.friends);    <span class="comment">//&quot;Shelby,Count&quot;</span></span><br><span class="line">alert(person1.friends === person2.friends);     <span class="comment">//false</span></span><br><span class="line">alert(person1.sayName === person2.sayName);     <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>  在这个例子中，实例属性都是在构造函数中定义的，而由所有实例共享的属性 constructor 和方 法 sayName()则是在原型中定义的。而修改了 person1.friends(向其中添加一个新字符串)，并不 会影响到 person2.friends，因为它们分别引用了不同的数组。<br>  这种构造函数与原型混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。可以说，这是用来定义引用类型的一种默认模式。</p>
+]]></content>
+      <categories>
+        <category>集文</category>
+        <category>编程相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>一些树莓派错误的解决方案</title>
+    <url>/2018/09/27/%E4%B8%80%E4%BA%9B%E6%A0%91%E8%8E%93%E6%B4%BE%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p>总结一下工作中遇到的树莓派bug。</p>
+<span id="more"></span>
+<h3 id="Error-Could-not-claim-USB-device"><a href="#Error-Could-not-claim-USB-device" class="headerlink" title="Error: Could not claim USB device"></a>Error: Could not claim USB device</h3><p>错误信息：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">*** Error ***  </span><br><span class="line">An error occurred <span class="keyword">in</span> the io-library (<span class="string">&#x27;Could not claim the USB device&#x27;</span>): Could not claim interface 0 (No such file or directory). Make sure no other program or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have <span class="built_in">read</span>/write access to the device.</span><br></pre></td></tr></table></figure>
+<p>解决方案：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo killall gvfs-gphoto2-volume-monitor</span><br></pre></td></tr></table></figure>
+<p>错误原因：<br><code>gvfs-gphoto2-volume-monitor</code>是一个PTP设备的容量监测器（<a href="https://docs.oracle.com/cd/E88353_01/html/E37853/gvfs-7.html">a volume monitor for PTP devices</a>），类似<code>PTPCamera</code>(在早期py脚本中杀死此进程才能继续执行)卷土重来。<br>所以PTP是什么呢？PTP(picture transfer protocol)是图片传输协议的缩写，符合这种标准的图像设备在接入系统之后可以更好地被系统和应用程序所共享，尤其在网络传输方面，系统可以直接访问这些设备用于建立网络相册时图片的上传、网上聊天时图片的传送等。<br>然而这种PTP进程似乎及占内存，所以此进程一旦存在，运行操作图像设备的指令都会报错。所以，操作设备时需杀死PTP进程。  </p>
+<p>方案来源：<a href="https://ubuntuforums.org/showthread.php?t=1552532">[ubuntu] Camera problems: Could not claim USB device</a></p>
+<h3 id="Error-Error-initialising-camera-105-Unknown-model"><a href="#Error-Error-initialising-camera-105-Unknown-model" class="headerlink" title="Error: Error initialising camera. -105: Unknown model."></a>Error: Error initialising camera. -105: Unknown model.</h3><p>错误信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: <span class="string">&quot;Error initialising camera. -105: Unknown model.&quot;</span> </span><br></pre></td></tr></table></figure>
+<p>解决方案（未验证）：<br>删除文件<code>/usr/share/dbus-1/services/org.gtk.Private.GPhoto2VolumeMonitor.service</code>、<code>/usr/share/gvfs/mounts/gphoto2.mount</code>、 <code>/usr/share/gvfs/remote-volume-monitors/gphoto2.monitor</code>、<br><code>/usr/lib/gvfs/gvfs-gphoto2-volume-monitor</code>(可选)。 </p>
+<p>错误原因：<br>gvfs-backends有一个自动挂载，它会干扰gphoto，删除gphoto配置文件可以解决这个问题。 </p>
+<p>方案来源：<a href="https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=32859&sid=2c7015bc95c362b873ef8319ce9ab276">DSLR camera not recognized (solved)</a></p>
+]]></content>
+      <categories>
+        <category>其他技术</category>
+      </categories>
+  </entry>
+</search>
